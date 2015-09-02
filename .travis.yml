@@ -29,5 +29,4 @@ after_success:
   - testify -v tests
   - ~/build/borgified/assimilation/discovery_agents/netconfig
   - cd ~/build/borgified/root_of_binary_tree/testcode
-  - sudo ../../assimilation/testcode/grind.sh
   - ~/build/borgified/root_of_binary_tree/testcode/pinger ::1
