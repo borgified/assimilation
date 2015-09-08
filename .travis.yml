@@ -21,6 +21,8 @@ script:
   - cmake ../assimilation
   - sudo make install
   - sudo ldconfig /usr/lib/x86_64-linux-gnu/assimilation
+  - sudo cpack
+  - sudo dpkg -i *.deb
 after_success:
   - sudo /etc/init.d/nanoprobe stop
   - sudo /etc/init.d/cma stop
