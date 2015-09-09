@@ -43,3 +43,4 @@ deploy:
   on:
     repo: borgified/assimilation
     branch: enable_travis
+
