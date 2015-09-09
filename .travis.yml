@@ -38,7 +38,9 @@ deploy:
   provider: releases
   api_key:
     secure: QnfPfl082LvNL8V/PWrmKENT6DU+jQ63Py9v8VDtrbgLSfPguvtkOhNB675MeEvTnEniG6zaeYWtkP6GS8woUnbVpqZLpmoagbLnlWaYLRU4k545ALEjvPc1wCfH+TDeA23cm/e4p9TeLEjENSh13+u4Pfk2/RRyy9G4lNOZjG5ZiDo2s+Z5J4lIVsxuoqXPqq8Cd4swUGxYOm3NsEVqSkt2qZkuges+PfaiSWlmIlbF4iLk8xv30yZfj+Eioyq+V2uUi2fHOnpEddDhKsdAwj3FvV4MB1ghzP0rAtindJ9AG9eDRY3lQKkA8Zw/IoFiYX4DCC5mFsHKNsqQ1ZycTMOtV7B2/uHl7+NGdkJ8fUId9ayTMHRJVNwi+gAYpSAXFJRvB1jZLZMOBM/gmF8JGVAL0gehVnvwciGpa09xEQntOWUt6JSQbFU4jEZ8oSVHXl4NYiqxqbZ/BOvXfZX73xqHpxfLK5mKGBVX6CtGHZNe2QCWJejiMkBBo9uihfvMMAqodWN/zOIq1vOCcxncY5S6MAgyTOksLVB9VUCV2F94WBmhnjodrbUzRutoLTH82ORR/eZ18UTHmYGTWEDxZAtSYbPn5Egbq4T+v6ZiLeXDaJqT8rrolRVItZm9WZwIJ+PydKavNraXOQLNLs3lRCLHe7p5wGdxVqkfav/3kbQ=
-  file: "/home/travis/build/borgified/root_of_binary_tree/*.deb"
+  file:
+    - "/home/travis/build/borgified/root_of_binary_tree/assimilation-cma-0.5.1441766646-all.deb"
+    - "/home/travis/build/borgified/root_of_binary_tree/assimilation-nanoprobe-0.5.1441766646-amd64.deb"
   skip_cleanup: true
   on:
     repo: borgified/assimilation
