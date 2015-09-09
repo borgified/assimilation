@@ -46,4 +46,4 @@ deploy:
     repo: borgified/assimilation
     branch: enable_travis
     tags: true
-    all-branches: true
+    all-branches: true 
