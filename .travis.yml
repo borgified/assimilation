@@ -1,5 +1,10 @@
 sudo: required
 language: c
+
+env:
+  global:
+    - BROKENDNS=1
+
 install:
 - sudo apt-get update -qq
 - sudo apt-get install -y python-flask doxygen valgrind libpcap-dev python-pip cmake
@@ -17,10 +22,11 @@ before_script:
 services:
 - neo4j
 script:
-- cd ~/build/borgified
+- cd $TRAVIS_BUILD_DIR
+- cd ..
 - mkdir root_of_binary_tree
 - cd root_of_binary_tree
-- cmake ../assimilation
+- cmake $TRAVIS_BUILD_DIR
 - sudo make install
 - sudo ldconfig /usr/lib/x86_64-linux-gnu/assimilation
 - sudo cpack
@@ -29,21 +35,8 @@ after_success:
 - sudo /etc/init.d/nanoprobe stop
 - sudo /etc/init.d/cma stop
 - sudo assimcli genkeys
-- cd ~/build/borgified/assimilation/cma
+- cd $TRAVIS_BUILD_DIR/cma
 - testify -v tests
-- "~/build/borgified/assimilation/discovery_agents/netconfig"
-- cd ~/build/borgified/root_of_binary_tree/testcode
-- "~/build/borgified/root_of_binary_tree/testcode/pinger ::1"
-deploy:
-  provider: releases
-  api_key:
-    secure: QnfPfl082LvNL8V/PWrmKENT6DU+jQ63Py9v8VDtrbgLSfPguvtkOhNB675MeEvTnEniG6zaeYWtkP6GS8woUnbVpqZLpmoagbLnlWaYLRU4k545ALEjvPc1wCfH+TDeA23cm/e4p9TeLEjENSh13+u4Pfk2/RRyy9G4lNOZjG5ZiDo2s+Z5J4lIVsxuoqXPqq8Cd4swUGxYOm3NsEVqSkt2qZkuges+PfaiSWlmIlbF4iLk8xv30yZfj+Eioyq+V2uUi2fHOnpEddDhKsdAwj3FvV4MB1ghzP0rAtindJ9AG9eDRY3lQKkA8Zw/IoFiYX4DCC5mFsHKNsqQ1ZycTMOtV7B2/uHl7+NGdkJ8fUId9ayTMHRJVNwi+gAYpSAXFJRvB1jZLZMOBM/gmF8JGVAL0gehVnvwciGpa09xEQntOWUt6JSQbFU4jEZ8oSVHXl4NYiqxqbZ/BOvXfZX73xqHpxfLK5mKGBVX6CtGHZNe2QCWJejiMkBBo9uihfvMMAqodWN/zOIq1vOCcxncY5S6MAgyTOksLVB9VUCV2F94WBmhnjodrbUzRutoLTH82ORR/eZ18UTHmYGTWEDxZAtSYbPn5Egbq4T+v6ZiLeXDaJqT8rrolRVItZm9WZwIJ+PydKavNraXOQLNLs3lRCLHe7p5wGdxVqkfav/3kbQ=
-  file:
-    - "/home/travis/build/borgified/root_of_binary_tree/`ls /home/travis/build/borgified/root_of_binary_tree/*cma*.deb`"
-    - "/home/travis/build/borgified/root_of_binary_tree/`ls /home/travis/build/borgified/root_of_binary_tree/*nanoprobe*.deb`"
-  skip_cleanup: true
-  on:
-    repo: borgified/assimilation
-    branch: enable_travis
-    tags: true
-    all-branches: true
+- $TRAVIS_BUILD_DIR/discovery_agents/netconfig
+- cd $TRAVIS_BUILD_DIR
+- cd ../root_of_binary_tree/testcode/pinger ::1
