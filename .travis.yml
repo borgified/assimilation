@@ -38,4 +38,4 @@ script:
 - testify -v tests
 - $TRAVIS_BUILD_DIR/discovery_agents/netconfig
 - cd $TRAVIS_BUILD_DIR
-- cd ../root_of_binary_tree/testcode/pinger ::1
+- ../root_of_binary_tree/testcode/pinger ::1
